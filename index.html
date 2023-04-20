@@ -13,6 +13,27 @@
           document.test1.sex[0].click();
         }
       }
+
+      function btnClick2() {
+        let sI = document.test2.item.selectedIndex;
+        console.log(sI);
+        let txt = "";
+        txt =
+          "Запропоновано " +
+          document.test2.item.length +
+          " напоїв" +
+          "\nВибраний " +
+          document.test2.item.options[sI].text +
+          "(value=" +
+          document.test2.item.options[sI].value +
+          ",index=" +
+          document.test2.item.options[sI].index +
+          ")";
+        if (document.test2.item.options[sI].defaultSelected) {
+          txt += "\nЦей напій вибирається за замовчуванням";
+        }
+        alert(txt);
+      }
     </script>
   </head>
   <body>
@@ -22,6 +43,21 @@
       <input type="radio" name="sex" value="woman" />Жіночий <br />Стан
       перемикачів можна змінити цією кнопкою
       <input type="button" value="Зміна стану" onclick="btnClick();" />
+    </form>
+    <form name="test2">
+      <select name="item" size="5">
+        <option value="tea" selected>Чай</option>
+        <option value="coffee">Кофе</option>
+        <option value="milk">Молоко</option>
+        <option value="cocoa">Какао</option>
+        <option value="juice">Сік</option>
+      </select>
+      <input
+        type="button"
+        value="Нехай кава"
+        onclick="test2.item.options[1].selected=true"
+      />
+      <input type="button" value="Подивимось" onclick="btnClick2()" />
     </form>
   </body>
 </html>
