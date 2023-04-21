@@ -5,43 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script>
-      function btnClick() {
-        if (document.test1.sex[0].checked) {
-          document.test1.sex[1].click();
-        } else {
-          document.test1.sex[0].click();
-        }
-      }
-
-      function btnClick2() {
-        let sI = document.test2.item.selectedIndex;
-        console.log(sI);
-        let txt = "";
-        txt =
-          "Запропоновано " +
-          document.test2.item.length +
-          " напоїв" +
-          "\nВибраний " +
-          document.test2.item.options[sI].text +
-          "(value=" +
-          document.test2.item.options[sI].value +
-          ",index=" +
-          document.test2.item.options[sI].index +
-          ")";
-        if (document.test2.item.options[sI].defaultSelected) {
-          txt += "\nЦей напій вибирається за замовчуванням";
-        }
-        alert(txt);
-      }
-    </script>
   </head>
   <body>
     <h1>Метод click групи перемикачів</h1>
     <form name="test1">
       <input type="radio" name="sex" value="man" checked />Чоловічій
-      <input type="radio" name="sex" value="woman" />Жіночий <br />Стан
-      перемикачів можна змінити цією кнопкою
+      <input type="radio" name="sex" value="woman" />Жіночий <br />Стан перемикачів можна змінити цією кнопкою
       <input type="button" value="Зміна стану" onclick="btnClick();" />
     </form>
     <form name="test2">
@@ -52,12 +21,61 @@
         <option value="cocoa">Какао</option>
         <option value="juice">Сік</option>
       </select>
-      <input
-        type="button"
-        value="Нехай кава"
-        onclick="test2.item.options[1].selected=true"
-      />
+      <input type="button" value="Нехай кава" onclick="test2.item.options[1].selected=true" />
       <input type="button" value="Подивимось" onclick="btnClick2()" />
     </form>
+
+    <h1>Динамічне заповнення списку</h1>
+    <form name="sel">
+      <!-- Порожній список посилань-->
+      <select name="listOfLinks"></select>
+      <!-- Кнопка активізації вибраного посилання-->
+      <input
+        type="button"
+        value="Перехід"
+        onClick="window.location.href=document.links[sel.listOfLinks.selectedIndex];"
+      />
+    </form>
+    <a href="https://rozetka.com.ua/"></a>
+    <a href="https://allo.ua/"></a>
+    <a href="https://www.olx.ua/"></a>
+    <a href="https://www.zieit.edu.ua/"></a>
+    <script>
+      function btnClick() {
+        if (document.test1.sex[0].checked) {
+          document.test1.sex[1].click()
+        } else {
+          document.test1.sex[0].click()
+        }
+      }
+
+      function btnClick2() {
+        let sI = document.test2.item.selectedIndex
+        console.log(sI)
+        let txt = ""
+        txt =
+          "Запропоновано " +
+          document.test2.item.length +
+          " напоїв" +
+          "\nВибраний " +
+          document.test2.item.options[sI].text +
+          "(value=" +
+          document.test2.item.options[sI].value +
+          ",index=" +
+          document.test2.item.options[sI].index +
+          ")"
+        if (document.test2.item.options[sI].defaultSelected) {
+          txt += "\nЦей напій вибирається за замовчуванням"
+        }
+        alert(txt)
+      }
+
+      for (i = 0; i < document.links.length; i++) {
+        // Створення i-елемента списку та запис до нього посилання
+        document.sel.listOfLinks.options[i] = new Option(document.links[i], i, false, false)
+      }
+      // Виділення першого елемента у списку
+      document.sel.listOfLinks.selectedIndex = 0
+    </script>
   </body>
 </html>
