@@ -40,6 +40,29 @@
     <a href="https://allo.ua/"></a>
     <a href="https://www.olx.ua/"></a>
     <a href="https://www.zieit.edu.ua/"></a>
+
+	<h1>заповніть анкету</h1>
+	<form name="sel1">
+	<!-- анкета -->
+	<table>
+	<tr><td><b>прізвище:<b></td>
+	<td><input name="family" size=20
+	onblur="this.value=this.value.touppercase()"></td></tr>
+	<tr><td><b>ім'я:<b></td>
+	<td><input name="name" size=20
+	onblur="this.value=this.value.touppercase()"></td></tr>
+	<tr><td><b>вік:<b></td>
+	<td><input name="age" size=3 value="18"
+	onblur="this.value=checkage(this.value)"
+	onfocus="this.select()" onchange="CheckAge()"></td></tr>
+	<tr><td><b>телефон:<b></td>
+	<td><input name="phone" size=10></td></tr>
+	</table>
+	<!-- кнопки готовності та скидання -->
+	<input type="button" value="ok" onclick="complete();">
+	<input type="reset" value="cancel">
+	</form>
+
     <script>
       function btnClick() {
         if (document.test1.sex[0].checked) {
@@ -76,6 +99,20 @@
       }
       // Виділення першого елемента у списку
       document.sel.listOfLinks.selectedIndex = 0
+
+	  function complete() {
+		let elem=`Прізвіще:${document.sel1.family.value}\n
+		Ім"я:${document.sel1.name.value}\n
+		Рік:${document.sel1.age.value}\n
+		Телефон:${document.sel1.phone.value}\n`
+		alert(elem)
+	  }
+
+	  function CheckAge() {
+		if (document.sel1.age.value<18) {
+			document.sel1.age.value=18
+		}
+	  }
     </script>
   </body>
 </html>
